@@ -2,7 +2,7 @@ import { useSession } from "next-auth/client";
 import React from "react";
 import Nav from "../components/nav";
 import UserProfileData from "../components/profile/user_profile";
-import FrontendUtils from "../utils/frontend_utils";
+import HttpUtils from "../utils/http_utils";
 
 export default function Page() {
   const [session, loading] = useSession();
@@ -14,12 +14,12 @@ export default function Page() {
       {session ? (
         <div className="m-4">
           <UserProfileData email={session.user.email} />
-          <button className="mt-2" onClick={FrontendUtils.signOut}>
+          <button className="mt-2" onClick={HttpUtils.signOut}>
             Sign out
           </button>
         </div>
       ) : (
-        <button onClick={FrontendUtils.signIn}>Sign in</button>
+        <button onClick={HttpUtils.signIn}>Sign in</button>
       )}
       {loading && <div>Loading...</div>}
     </>

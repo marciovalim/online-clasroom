@@ -1,6 +1,6 @@
 import React from "react";
 import { signIn, signOut, useSession } from "next-auth/client";
-import Nav from "../components/nav";
+import Nav from "../../components/nav";
 
 export default function Page() {
   const [session, loading] = useSession();

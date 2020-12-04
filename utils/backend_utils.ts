@@ -1,3 +1,4 @@
+import Axios, { AxiosResponse } from "axios";
 import { NextApiResponse, NextApiRequest } from "next";
 import { getSession } from "next-auth/client";
 export default class BackendUtils {
@@ -11,5 +12,9 @@ export default class BackendUtils {
 
   static async requestIsAuthenticated(req: NextApiRequest) {
     return (await getSession({ req })) !== null;
+  }
+
+  static async fetchRequest(path: string): Promise<AxiosResponse> {
+    return await Axios.get(path);
   }
 }

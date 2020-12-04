@@ -15,7 +15,9 @@ export default async (
     }
 
     const usersCollection = await DatabaseUtils.getUsersCollection();
-    const response = await usersCollection.find({ courses: course }).toArray();
+    const response = await usersCollection
+      .find({ courses: { $in: [new RegExp(`^${course}`, "i")] } })
+      .toArray();
 
     if (response.length === 0) {
       return res

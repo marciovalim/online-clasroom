@@ -43,11 +43,11 @@ export default async (
 
     await usersCollection.updateOne(
       { _id: teacherObjId },
-      { $push: { appointments: appointment } }
+      { $push: { appointments: appointment }, $inc: { coins: 1 } }
     );
     await usersCollection.updateOne(
       { _id: studentObjId },
-      { $push: { appointments: appointment } }
+      { $push: { appointments: appointment }, $inc: { coins: -1 } }
     );
 
     return res.status(200).json(appointment);

@@ -1,6 +1,6 @@
-import Axios, { AxiosResponse } from "axios";
 import { NextApiResponse, NextApiRequest } from "next";
 import { getSession } from "next-auth/client";
+import * as nextauth from "next-auth/client";
 export default class BackendUtils {
   static wronRequestMethodError(res: NextApiResponse<any>): void {
     return res.status(400).json({ error: "Wrong request method." });
@@ -14,7 +14,11 @@ export default class BackendUtils {
     return (await getSession({ req })) !== null;
   }
 
-  static async fetchRequest(path: string): Promise<AxiosResponse> {
-    return await Axios.get(path);
+  static async signIn(): Promise<void> {
+    await nextauth.signIn("auth0");
+  }
+
+  static async signOut(): Promise<void> {
+    await nextauth.signOut();
   }
 }

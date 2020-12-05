@@ -19,12 +19,6 @@ export default async (
       .find({ courses: { $in: [new RegExp(`^${course}`, "i")] } })
       .toArray();
 
-    if (response.length === 0) {
-      return res
-        .status(400)
-        .json({ error: "No teacher with this course was found" });
-    }
-
     return res.status(200).json(response);
   }
   return BackendUtils.wronRequestMethodError(res);

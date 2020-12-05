@@ -1,6 +1,7 @@
 import useSWR from "swr";
 import BackendUtils from "../utils/backend_utils";
 import UserModel from "../models/user_model";
+import HttpUtils from "../utils/http_utils";
 
 export interface UseUserResponse {
   user: UserModel;
@@ -11,7 +12,7 @@ export interface UseUserResponse {
 export default function useUser(emailOrId: string): UseUserResponse {
   const { data, error } = useSWR(
     `/api/user/${emailOrId}`,
-    BackendUtils.fetchRequest
+    HttpUtils.fetchRequest
   );
 
   return {

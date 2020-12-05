@@ -4,6 +4,7 @@ import ReviewModel from "./review_model";
 import TypeUtils from "../utils/type_utils";
 
 export default class UserModel {
+  _id: string;
   name: string;
   email: string;
   cellphone: string;

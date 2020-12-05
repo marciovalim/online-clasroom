@@ -14,11 +14,13 @@ export default function UserProfileData({ email }: UserProfileProps) {
       ) : isLoading ? (
         <div>Loading user profile...</div>
       ) : (
-        <>
-          <div>O email {email} está logado no momento</div>{" "}
-          <div>name: {user.name}</div>
-          <div>coins: {user.coins}</div>
-        </>
+        user && (
+          <>
+            <div>O email {email} está logado no momento</div>{" "}
+            <div>name: {user.name}</div>
+            <div>coins: {user.coins}</div>
+          </>
+        )
       )}
     </>
   );
